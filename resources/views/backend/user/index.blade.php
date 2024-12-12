@@ -38,6 +38,7 @@ Users
                             <th>No</th>
                             <th>Profile</th>
                             <th>Name</th>
+                            <th>Role</th>
                             <th>Phone</th>
                             <th>Email</th>
                             <th>Status</th>
@@ -101,6 +102,10 @@ Users
                 {
                     data: 'name',
                     name: 'name'
+                },
+                {
+                    data: 'role',
+                    name: 'role'
                 },
                 {
                     data: 'phone',

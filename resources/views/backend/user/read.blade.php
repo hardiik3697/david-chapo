@@ -55,6 +55,10 @@ View User
                             <i class="ri-check-line ri-24px"></i>
                             <span class="fw-medium mx-2">Status:</span> <span>{{ ucfirst($data->status ?? '' ) }}</span>
                         </li>
+                        <li class="d-flex align-items-center mb-4">
+                            <i class="ri-star-smile-line ri-24px"></i>
+                            <span class="fw-medium mx-2">Role:</span> <span>{{ ucfirst($data->role ?? '' ) }}</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -70,7 +74,7 @@ View User
                             <span>{{ ucfirst($data->phone ?? '(000) 111 2222' ) }}</span>
                         </li>
                         <li class="d-flex align-items-center mb-2">
-                            <i class="ri-mail-open-line ri-24px"></i>
+                            <i class="ri-shield-user-line ri-24px"></i>
                             <span class="fw-medium mx-2">Username:</span>
                             <span>{{ ucfirst($data->username ?? 'john123' ) }}</span>
                         </li>

@@ -15,23 +15,23 @@ class UserSeeder extends Seeder{
                         'lastname' => 'Admin',
                         'username' => 'super',
                         'phone' => '7897897891',
-                        'email' => 'superadmin@example.com',
+                        'email' => 'admin@example.com',
                         'role' => 'admin'
                     ],
                     [
                         'firstname' => 'Mitul',
-                        'lastname' => 'admin',
-                        'username' => 'mituladmin',
+                        'lastname' => 'gajjar',
+                        'username' => 'mitul',
                         'phone' => '7897897892',
-                        'email' => 'mitul@admin.com',
+                        'email' => 'mitul@example.com',
                         'role' => 'user'
                     ],
                     [
                         'firstname' => 'Hardik',
-                        'lastname' => 'admin',
-                        'username' => 'hardikadmin',
+                        'lastname' => 'patel',
+                        'username' => 'hardiik',
                         'phone' => '7897897893',
-                        'email' => 'hardik@admin.com',
+                        'email' => 'hardik@example.com',
                         'role' => 'user'
                     ]
                 ];

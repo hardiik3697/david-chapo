@@ -52,6 +52,10 @@ Profile
                             <i class="ri-check-line ri-24px"></i>
                             <span class="fw-medium mx-2">Status:</span> <span>{{ ucfirst(auth()->user()->status ?? '' ) }}</span>
                         </li>
+                        <li class="d-flex align-items-center mb-4">
+                            <i class="ri-star-smile-line ri-24px"></i>
+                            <span class="fw-medium mx-2">Role:</span> <span>{{ ucfirst(auth()->user()->role ?? '' ) }}</span>
+                        </li>
                     </ul>
                 </div>
             </div>

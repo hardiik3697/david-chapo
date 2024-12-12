@@ -57,11 +57,13 @@
                 <div>Dashboard</div>
             </a>
         </li>
-        <li class="menu-item {{ Request::is('user*') ? 'active' : '' }}">
-            <a href="{{ route('user') }}" class="menu-link">
-                <i class="menu-icon tf-icons ri-group-line"></i>
-                <div>User Management</div>
-            </a>
-        </li>
+        @if (Auth::user()->role == 'admin')
+            <li class="menu-item {{ Request::is('user*') ? 'active' : '' }}">
+                <a href="{{ route('user') }}" class="menu-link">
+                    <i class="menu-icon tf-icons ri-group-line"></i>
+                    <div>User Management</div>
+                </a>
+            </li>
+        @endif
     </ul>
 </aside>

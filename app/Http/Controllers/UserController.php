@@ -35,6 +35,10 @@ class UserController extends Controller{
                                 </div>';
                     })
 
+                    ->editColumn('role', function ($data) {
+                        return ucfirst(string: $data->role);
+                    })
+
                     ->editColumn('status', function ($data) {
                         if ($data->status == 'active') {
                             return '<span class="badge badge-pill badge-success">Active</span>';
@@ -60,7 +64,7 @@ class UserController extends Controller{
                         return '<span>'.$data->firstname.' '.$data->lastname.'</span>';
                     })
 
-                    ->rawColumns(['profile', 'name', 'action', 'status'])
+                    ->rawColumns(['profile', 'name', 'role', 'action', 'status'])
                     ->make(true);
             }
 
@@ -88,6 +92,7 @@ class UserController extends Controller{
                 'username' => $request->username ?? '',
                 'email' => $request->email,
                 'phone' => $request->phone ?? '',
+                'role' => $request->role ?? 'user',
                 'status' => 'active',
                 'password' => bcrypt($password),
                 'created_at' => date('Y-m-d H:i:s'),
@@ -142,7 +147,7 @@ class UserController extends Controller{
                 return redirect()->route('user')->with('error', 'Something went wrong');
 
             $path = URL('/uploads/users').'/';
-            $data = User::select('id', 'firstname', 'lastname', 'username', 'email', 'phone', 'password',
+            $data = User::select('id', 'firstname', 'lastname', 'username', 'email', 'phone', 'password', 'role',
                                     DB::Raw("CASE
                                         WHEN ".'photo'." != '' THEN CONCAT("."'".$path."'".", ".'photo'.")
                                         ELSE CONCAT("."'".$path."'".", 'profile-pic.png')
@@ -168,6 +173,7 @@ class UserController extends Controller{
                 'username' => $request->username,
                 'email' => $request->email,
                 'phone' => $request->phone,
+                'role' => $request->role,
                 'updated_at' => date('Y-m-d H:i:s'),
                 'updated_by' => auth()->user()->id
             ];
@@ -230,7 +236,7 @@ class UserController extends Controller{
                 return redirect()->route('user')->with('error', 'Something went wrong');
 
             $path = URL('/uploads/users').'/';
-            $data = User::select( 'id', 'firstname', 'lastname', 'username', 'email', 'phone', 'password', 'status',
+            $data = User::select( 'id', 'firstname', 'lastname', 'username', 'email', 'phone', 'password', 'status', 'role',
                                     DB::Raw("CASE
                                         WHEN ".'photo'." != '' THEN CONCAT("."'".$path."'".", ".'photo'.")
                                         ELSE CONCAT("."'".$path."'".", 'profile-pic.png')
@@ -254,6 +260,9 @@ class UserController extends Controller{
                 $data = User::where(['id' => $id])->first();
 
                 if(!empty($data)){
+                    if($id == 1)
+                        return response()->json(['code' => 201]);
+
                     $process = User::where(['id' => $id])->update(['status' => $status, 'updated_by' => auth()->user()->id]);
 
                     if($process)

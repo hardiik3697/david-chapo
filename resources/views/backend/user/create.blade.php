@@ -73,6 +73,17 @@ Add User
                                 </div>
                             </div>
                             <div class="col-md-6">
+                                <div class="form-floating form-floating-outline">
+                                    <select name="role" id="role" class="form-select role" >
+                                        <option value="">Select role</option>
+                                        <option value="admin">Admin</option>
+                                        <option value="user">User</option>
+                                    </select>
+                                    <label for="role">Role</label>
+                                    <div class="invalid-feedback invalid-feedback-role"></div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
                                 <input type="file" name="photo" id="photo" class="form-control photo" />
                                 <div class="invalid-feedback invalid-feedback-photo"></div>
                             </div>

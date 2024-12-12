@@ -17,6 +17,7 @@ class UserRequest extends FormRequest{
                 'username' => 'regex:/^[\pL\s\-]+$/u|max:255',
                 'email' => 'required|email|unique:users,email,'.$this->id,
                 'phone' => 'nullable|digits:10|unique:users,phone,'.$this->id,
+                'role' => 'required',
             ];
         }else{
             return [
@@ -25,6 +26,7 @@ class UserRequest extends FormRequest{
                 'username' => 'regex:/^[\pL\s\-]+$/u|max:255',
                 'email' => 'required|email|unique:users,email',
                 'phone' => 'nullable|digits:10|unique:users,phone',
+                'role' => 'required',
             ];
         }
     }
@@ -45,7 +47,8 @@ class UserRequest extends FormRequest{
             'email.unique' => 'Please enter unique email',
             'phone.required' => 'Please enter phone number',
             'phone.digits' => 'Please enter 10 digit number',
-            'phone.unique' => 'Please enter unique phone'
+            'phone.unique' => 'Please enter unique phone',
+            'role.required' => 'Please Select role'
         ];
     }
 }
