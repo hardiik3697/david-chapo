@@ -1,0 +1,137 @@
+@extends('layout.app')
+
+@section('meta')
+@endsection
+
+@section('title')
+Home
+@endsection
+
+@section('styles')
+<link rel="stylesheet" href="{{ asset('assets/vendor/css/pages/front-page-landing.css') }}" />
+<style>
+    .client-logo {
+        width: 150px;
+        /* Set a fixed width */
+        height: 100px;
+        /* Set a fixed height */
+        object-fit: cover;
+        /* Ensures the entire image fits within the set dimensions */
+    }
+</style>
+@endsection
+
+@section('content')
+<section id="landingHero" class="section-py landing-hero position-relative">
+    <img
+        src="{{ asset('assets/img/front-pages/backgrounds/hero-bg-light.png') }}"
+        alt="hero background"
+        class="position-absolute top-0 start-0 w-100 h-100 z-n1"
+        data-speed="1"
+        data-app-light-img="front-pages/backgrounds/hero-bg-light.png"
+        data-app-dark-img="front-pages/backgrounds/hero-bg-dark.png" />
+    <div class="container">
+        <div class="hero-text-box text-center">
+            <h3 class="text-primary hero-title fs-2">Ready to Get Started?</h3>
+            <h2 class="h6 mb-8">Confirm platform and fill details</h2>
+            <a href="{{ route('payment.charge') }}" class="btn btn-lg btn-primary waves-effect waves-light">Start Playing</a>
+        </div>
+        <div class="position-relative hero-animation-img">
+            <a href="javascript:void(0)">
+                <div class="hero-dashboard-img text-center">
+                    <img
+                        src="{{ asset('assets/img/front-pages/landing-page/hero-dashboard-light.png') }}"
+                        alt="hero dashboard"
+                        class="animation-img"
+                        data-speed="2"
+                        data-app-light-img="front-pages/landing-page/hero-dashboard-light.png"
+                        data-app-dark-img="front-pages/landing-page/hero-dashboard-dark.png" />
+                </div>
+                <div class="position-absolute hero-elements-img">
+                    <img
+                        src="{{ asset('assets/img/front-pages/landing-page/hero-elements-light.png') }}"
+                        alt="hero elements"
+                        class="animation-img"
+                        data-speed="4"
+                        data-app-light-img="front-pages/landing-page/hero-elements-light.png"
+                        data-app-dark-img="front-pages/landing-page/hero-elements-dark.png" />
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+
+<section id="landingReviews" class="section-py bg-body landing-reviews" style="padding-top: 9.0rem;">
+    <div class="container">
+        <h6 class="text-center  d-flex justify-content-center align-items-center mb-6">
+            <img src="{{ asset('assets/img/front-pages/icons/section-tilte-icon.png') }}" alt="section title icon" class="me-3" />
+            <span class="text-uppercase">Our platforms</span>
+        </h6>
+        <h5 class="text-center mb-2"><span class="display-5 fs-4 fw-bold">Platforms that y'all</span> likes</h5>
+    </div>
+    <div class="swiper-reviews-carousel overflow-hidden mb-12 pt-4">
+        <div class="swiper" id="swiper-reviews">
+            <div class="swiper-wrapper">
+                @if ($platform)
+                @foreach ($platform as $k => $v)
+                <div class="swiper-slide">
+                    <div class="card h-100">
+                        <div class="card-body text-body d-flex flex-column justify-content-between text-center p-8">
+                            <div class="mb-4">
+                                <img src="{{ __path('platform').$v['logo'] }}" alt="client logo" class="client-logo img-fluid" style="height: 4.75rem;" />
+                            </div>
+                            <h6>{{ $v['description'] }}</h6>
+                            <div>
+                                <a href="{{ $v['frontend_url'] }}" target="_blank">
+                                    <h6 class="mb-0">{{ $v['name'] }}</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @foreach ($platform as $k => $v)
+                <div class="swiper-slide">
+                    <div class="card h-100">
+                        <div class="card-body text-body d-flex flex-column justify-content-between text-center p-8">
+                            <div class="mb-4">
+                                <img src="{{ __path('platform').$v['logo'] }}" alt="client logo" class="client-logo img-fluid" style="height: 4.75rem;" />
+                            </div>
+                            <h6>{{ $v['description'] }}</h6>
+                            <div>
+                                <a href="{{ $v['frontend_url'] }}" target="_blank">
+                                    <h6 class="mb-0">{{ $v['name'] }}</h6>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                @endforeach
+                @endif
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="swiper-logo-carousel pt-lg-4 mt-12">
+            <div class="swiper" id="swiper-clients-logos">
+                <div class="swiper-wrapper">
+                    @if ($platform)
+                        @foreach ($platform as $k => $v)
+                            <div class="swiper-slide">
+                                <a href="{{ route('platform', ['id' => base64_encode($v['id'])]) }}">
+                                    <img src="{{ __path('platform').$v['logo'] }}" alt="{{ $v['name'] }}" class="client-logo" style="height: 4.75rem;" />
+                                </a>
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@endsection
+
+@section('scripts')
+<script src="{{ asset('assets/js/front-page-landing.js') }}"></script>
+@endsection
